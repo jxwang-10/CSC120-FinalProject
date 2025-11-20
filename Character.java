@@ -1,5 +1,8 @@
 public class Character {
-    public static void main(String[] args) {
-        System.out.println("hey");
-    }
+    int attackPower;
+    int defencse;
+    int recovery;
+    int intelligence;
+    int speed;
+    
 }
