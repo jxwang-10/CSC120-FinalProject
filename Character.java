@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Character {
 
-    int totalPoints;
+    int maxPoints;
     Hashtable<String,Integer> pointDistribution;
     int attack;
     int defense;
@@ -13,7 +14,7 @@ public class Character {
     ArrayList<String> keys;
     
     public Character(){
-        this.totalPoints = 15;
+        this.maxPoints = 15;
         this.pointDistribution = new Hashtable<>();
         pointDistribution.put("Attack", 0);
         pointDistribution.put("Defense", 0);
@@ -33,31 +34,82 @@ public class Character {
     }
 
     public void viewStats(){
-        System.out.println("\nPoint Distribution:");
+        System.out.println("Point Distribution:");
         for(int i = 0; i < keys.size(); i ++){
             System.out.println(keys.get(i)+": "+pointDistribution.get(keys.get(i)));
         }
     }
 
+    public int getTotalPoints(){
+        int total = 0;
+        for(int i = 0; i < keys.size(); i ++){
+            total = total + pointDistribution.get(keys.get(i));
+        }
+        return total;
+    }
+
     // Setting individual stats
 
-    // private void setAttackPower(){}
-
-    // private void setDefense(){}
-    
-    // private void setRecovery(){}
-
-    // private void setIntelligence(){}
-
-    // private void setSpeed(){}
+    public void setStat(String characteristic, int newAmnt){
+        boolean charExists = false;
+        for(int i = 0; i < keys.size(); i ++){
+            String realChar = keys.get(i);
+            if(realChar.equals(characteristic)){
+                charExists = true;
+                break;
+            }
+        }
+        if(charExists == false){
+            System.out.println("Characteristic does not exist.");
+            return;
+        }
+        int total = this.getTotalPoints();
+        int currentAmnt = pointDistribution.get(characteristic);
+        if((total - currentAmnt + newAmnt) <= this.maxPoints){
+            this.pointDistribution.replace(characteristic, newAmnt);
+        }else{
+            System.out.println("You do not have enough points. Try assigning a different number of points to this characteristic.");
+        }
+    }
 
     // Setting all stats
 
-    public void setStats(int attackPower, int defense, int recovery, int speed){
-        
+    public void userSetStats(){
+        Scanner input = new Scanner(System.in);
+        while(true){
+            System.out.println("What stat would you like to change?");
+            String changingChar = input.nextLine();
+            System.out.println("What would you like to change "+changingChar+" to?");
+            int changingAmnt = input.nextInt();
+            input.nextLine();
+            this.setStat(changingChar, changingAmnt);
+            System.out.println("Updated Stats:");
+            this.viewStats();
+            System.out.println("Would you like to set more stats? Type N for no and Y for yes");
+            String keepOn = input.nextLine();
+            if(keepOn.equalsIgnoreCase("N")){
+                System.out.println("Okay, done changing stats");
+                input.close();
+                break;
+            }else{
+                continue;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        // Character legend = new Character();
-        // legend.viewStats();
+        Character legend = new Character();
+        legend.viewStats();
+        System.out.println(legend.getTotalPoints());
+        System.out.println(legend.maxPoints);
+      //  legend.maxPoints = 14;
+     //   legend.setAttack(15);
+        legend.setStat("Attacb", 15);
+        System.out.println("("+legend.getTotalPoints()+"-"+legend.pointDistribution.get("Attack")+"+"+15+")>"+legend.maxPoints);
+        legend.viewStats();
+
+        legend.userSetStats();
+
+        // make stats an enum?
     }
+}

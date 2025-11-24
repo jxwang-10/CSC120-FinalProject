@@ -46,12 +46,13 @@ public class Boss {
     }
 
     public void attack(){
+        System.out.println("Booyah!");
+    }
+
+    public static void main(String[] args) {
         Character legend = new Character();
         Boss goblin = new Boss();
         boolean playerWin = goblin.canWin(legend.getStats());
         System.out.println(playerWin);
-        System.out.println("Booyah!");
     }
-
-
 }
