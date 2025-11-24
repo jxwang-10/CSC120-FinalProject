@@ -12,7 +12,10 @@ public class Character {
     int intelligence;
     int speed;
     ArrayList<String> keys;
-    
+
+    /**
+     * Constructor, sets default 0s for individual characteristics and 15 for default maxpoints
+     */
     public Character(){
         this.maxPoints = 15;
         this.pointDistribution = new Hashtable<>();
@@ -29,10 +32,17 @@ public class Character {
         keys.add("Speed");
     }
 
+    /**
+     * Gets the point distribution
+     * @return Hashtable<String,Integer> of the point distriubtion, where String/key is the characterisitc and the Integer/value is the amount that characteristic has
+     */
     public Hashtable<String,Integer> getStats(){
         return this.pointDistribution;
     }
 
+    /**
+     * Prints the point distribution
+     */
     public void viewStats(){
         System.out.println("Point Distribution:");
         for(int i = 0; i < keys.size(); i ++){
@@ -40,6 +50,10 @@ public class Character {
         }
     }
 
+    /**
+     * Gets the total number of points across stats
+     * @return int, the total number of points currently in the distriubtion
+     */
     public int getTotalPoints(){
         int total = 0;
         for(int i = 0; i < keys.size(); i ++){
@@ -50,6 +64,11 @@ public class Character {
 
     // Setting individual stats
 
+    /**
+     * Assigns an amount to an individual characteristic
+     * @param characteristic the characteristic to update in the point distribution
+     * @param newAmnt the new amount for the characteristic
+     */
     public void setStat(String characteristic, int newAmnt){
         boolean charExists = false;
         for(int i = 0; i < keys.size(); i ++){
@@ -74,13 +93,16 @@ public class Character {
 
     // Setting all stats
 
+    /**
+     * Interacts with user through terminal to set point distribution
+     */
     public void userSetStats(){
         Scanner input = new Scanner(System.in);
         while(true){
             System.out.println("What stat would you like to change?");
             String changingChar = input.nextLine();
             System.out.println("What would you like to change "+changingChar+" to?");
-            int changingAmnt = input.nextInt();
+            int changingAmnt = input.nextInt(); // could more gracefullly catch exception here
             input.nextLine();
             this.setStat(changingChar, changingAmnt);
             System.out.println("Updated Stats:");
