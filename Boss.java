@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Boss {
     //Attributes
@@ -11,6 +12,9 @@ public class Boss {
     //ArrayList<String> playerAttacks;
     ArrayList<String> bossAttacks;
     boolean playerWin;
+    Hashtable<String, String> retaliations;
+    String winRespo;
+    String looseRespo;
 
     // Constructor
     public Boss(){
@@ -45,12 +49,26 @@ public class Boss {
     }
 
     public void attack(){
-        System.out.println("Booyah!");
+        // go through every attack, ask user how to respond
+        Scanner input = new Scanner(System.in);
+        for(int i = 0; i < bossAttacks.size(); i ++){
+            // let user pick response
+            System.out.println("How do you want to respond?");
+            // print all the keys
+            for(int i = 0; i < retaliations.keys.size(); i ++){
+                System.out.println(retaliations.keys);
+            }
+            String response = input.nextLine();
+            // give default retaliation for that response
+            // if response exists
+            System.out.println(retaliations.get(response));
+        }
         if (this.playerWin){
             System.out.println("You Win!");
         } else{
             System.out.println("You Lose LOL");
         }
+        input.close();
     }
 
     public static void main(String[] args) {
