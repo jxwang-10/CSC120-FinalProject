@@ -70,18 +70,6 @@ public class Character {
      * @param newAmnt the new amount for the characteristic
      */
     public void setStat(String characteristic, int newAmnt){
-        boolean charExists = false;
-        for(int i = 0; i < keys.size(); i ++){
-            String realChar = keys.get(i);
-            if(realChar.equals(characteristic)){
-                charExists = true;
-                break;
-            }
-        }
-        if(charExists == false){
-            System.out.println("Characteristic does not exist.");
-            return;
-        }
         int total = this.getTotalPoints();
         int currentAmnt = pointDistribution.get(characteristic);
         if((total - currentAmnt + newAmnt) <= this.maxPoints){
@@ -101,6 +89,18 @@ public class Character {
         while(true){
             System.out.println("What stat would you like to change?");
             String changingChar = input.nextLine();
+            boolean charExists = false;
+            for(int i = 0; i < keys.size(); i ++){
+                String realChar = keys.get(i);
+                if(realChar.equals(changingChar)){
+                    charExists = true;
+                    break;
+                }
+            }
+            if(charExists == false){
+                System.out.println("Characteristic does not exist.");
+                break;
+            }
             System.out.println("What would you like to change "+changingChar+" to?");
             int changingAmnt = input.nextInt(); // could more gracefullly catch exception here
             input.nextLine();
@@ -113,8 +113,10 @@ public class Character {
                 System.out.println("Okay, done changing stats");
                 input.close();
                 break;
-            }else{
+            }else if(keepOn.equalsIgnoreCase("Y")){
                 continue;
+            }else{
+                break;
             }
         }
     }
@@ -126,7 +128,7 @@ public class Character {
         System.out.println(legend.maxPoints);
       //  legend.maxPoints = 14;
      //   legend.setAttack(15);
-        legend.setStat("Attacb", 15);
+        legend.setStat("Attack", 15);
         System.out.println("("+legend.getTotalPoints()+"-"+legend.pointDistribution.get("Attack")+"+"+15+")>"+legend.maxPoints);
         legend.viewStats();
 
