@@ -23,7 +23,7 @@ public class Boss {
         this.playerWin = false;
     }
 
-    public boolean canWin(Hashtable<String,Integer> charStats){
+    public void canWin(Hashtable<String,Integer> charStats){
         int attack = charStats.get("Attack");
         int defense = charStats.get("Defense");
         int recovery = charStats.get("Recovery");
@@ -42,7 +42,6 @@ public class Boss {
             }
 
         }
-        return this.playerWin;
     }
 
     public void attack(){
