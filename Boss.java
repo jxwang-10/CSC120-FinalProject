@@ -47,12 +47,18 @@ public class Boss {
 
     public void attack(){
         System.out.println("Booyah!");
+        if (this.playerWin){
+            System.out.println("You Win!");
+        } else{
+            System.out.println("You Lose LOL");
+        }
     }
 
     public static void main(String[] args) {
         Character legend = new Character();
         Boss goblin = new Boss();
-        boolean playerWin = goblin.canWin(legend.getStats());
-        System.out.println(playerWin);
+        goblin.canWin(legend.getStats());
+        goblin.attack();
     }
+
 }
