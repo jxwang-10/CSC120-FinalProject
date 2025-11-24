@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Boss {
     //Attributes
@@ -22,7 +23,12 @@ public class Boss {
         this.playerWin = false;
     }
 
-    public void canWin(int attack, int defense, int recovery, int intelligence, int speed){
+    public boolean canWin(Hashtable<String,Integer> charStats){
+        int attack = charStats.get("Attack");
+        int defense = charStats.get("Defense");
+        int recovery = charStats.get("Recovery");
+        int intelligence = charStats.get("Intelligence");
+        int speed = charStats.get("Speed");
         if(attack >= this.attackRequirement){
             if(defense >= this.defenseRequirement){
                 if(recovery >= recoveryRequirement){
@@ -36,12 +42,17 @@ public class Boss {
             }
 
         }
-
+        return this.playerWin;
     }
 
     public void attack(){
         System.out.println("Booyah!");
     }
 
-
+    public static void main(String[] args) {
+        Character legend = new Character();
+        Boss goblin = new Boss();
+        boolean playerWin = goblin.canWin(legend.getStats());
+        System.out.println(playerWin);
+    }
 }
