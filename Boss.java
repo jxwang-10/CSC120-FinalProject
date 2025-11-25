@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -52,21 +53,24 @@ public class Boss {
         // go through every attack, ask user how to respond
         Scanner input = new Scanner(System.in);
         for(int i = 0; i < bossAttacks.size(); i ++){
-            // let user pick response
-            System.out.println("How do you want to respond?");
-            // print all the keys
-            for(int i = 0; i < retaliations.keys.size(); i ++){
-                System.out.println(retaliations.keys);
+            System.out.println(bossAttacks.get(i));            // prints attack
+            System.out.println("How do you want to respond?"); // let user pick response
+            Enumeration<String> e = retaliations.elements();
+            while(e.hasMoreElements()){
+                System.out.println(e.nextElement());
             }
             String response = input.nextLine();
-            // give default retaliation for that response
-            // if response exists
-            System.out.println(retaliations.get(response));
+            if(retaliations.containsKey(response)){             // if response exists
+                System.out.println(retaliations.get(response)); // give default retaliation for that response
+            }else{
+                System.out.println("Response does not exist");
+                break;
+            }
         }
         if (this.playerWin){
-            System.out.println("You Win!");
+            System.out.println(winRespo);
         } else{
-            System.out.println("You Lose LOL");
+            System.out.println(looseRespo);
         }
         input.close();
     }
