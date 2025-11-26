@@ -68,9 +68,9 @@ public class Boss {
             }
         }
         if (this.playerWin){
-            System.out.println(winRespo);
+            System.out.println("Congrats! You win!");
         } else{
-            System.out.println(looseRespo);
+            System.out.println("You lost :( Stats insufficent.");
         }
         input.close();
     }
