@@ -45,12 +45,29 @@ public class Boss {
     }
 
     public void attack(){
-        System.out.println("Booyah!");
-        if (this.playerWin){
-            System.out.println("You Win!");
-        } else{
-            System.out.println("You Lose LOL");
+        // go through every attack, ask user how to respond
+        Scanner input = new Scanner(System.in);
+        for(int i = 0; i < bossAttacks.size(); i ++){
+            System.out.println(bossAttacks.get(i));            // prints attack
+            System.out.println("How do you want to respond?"); // let user pick response
+            Enumeration<String> e = retaliations.elements();
+            while(e.hasMoreElements()){
+                System.out.println(e.nextElement());
+            }
+            String response = input.nextLine();
+            if(retaliations.containsKey(response)){             // if response exists
+                System.out.println(retaliations.get(response)); // give default retaliation for that response
+            }else{
+                System.out.println("Response does not exist");
+                break;
+            }
         }
+        if (this.playerWin){
+            System.out.println("Congrats! You win!");
+        } else{
+            System.out.println("You lost :( Stats insufficent.");
+        }
+        input.close();
     }
 
     public static void main(String[] args) {
