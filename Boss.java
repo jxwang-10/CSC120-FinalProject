@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Boss {
     //Attributes
@@ -11,6 +13,9 @@ public class Boss {
     //ArrayList<String> playerAttacks;
     ArrayList<String> bossAttacks;
     boolean playerWin;
+    Hashtable<String, String> retaliations;
+    String winRespo;
+    String looseRespo;
 
     // Constructor
     public Boss(){
