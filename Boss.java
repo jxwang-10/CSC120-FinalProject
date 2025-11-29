@@ -11,7 +11,6 @@ public class Boss {
     int recoveryRequirement;
     int intelligenceRequirement;
     int speedRequirement;
-    //ArrayList<String> playerAttacks;
     ArrayList<String> bossAttacks;
     boolean playerWin;
     String winRespo;
@@ -70,12 +69,15 @@ public class Boss {
             }
             this.bossAttacks.remove(randomIndex);
         }
-        if (this.playerWin){
-            System.out.println("Congrats! You win!");
-        } else{
-            System.out.println("You lost :( Stats insufficent.");
-        }
         input.close();
+    }
+
+    public void end(){
+        if (this.playerWin){
+            System.out.println(this.winRespo);
+        } else{
+            System.out.println(this.looseRespo);
+        }
     }
 
     public static void main(String[] args) {
