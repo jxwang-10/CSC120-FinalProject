@@ -13,7 +13,6 @@ public class Boss {
     //ArrayList<String> playerAttacks;
     ArrayList<String> bossAttacks;
     boolean playerWin;
-    Hashtable<String, String> retaliations;
     String winRespo;
     String looseRespo;
 
@@ -49,7 +48,7 @@ public class Boss {
         }
     }
 
-    public void attack(){
+    public void attack(Hashtable<String, String> retaliations){
         // go through every attack, ask user how to respond
         Scanner input = new Scanner(System.in);
         for(int i = 0; i < bossAttacks.size(); i ++){
@@ -79,7 +78,6 @@ public class Boss {
         Character legend = new Character();
         Boss goblin = new Boss();
         goblin.canWin(legend.getStats());
-        goblin.attack();
     }
 
 }
