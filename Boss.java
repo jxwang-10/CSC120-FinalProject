@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Boss {
     //Attributes
@@ -51,8 +52,10 @@ public class Boss {
     public void attack(Hashtable<String, String> retaliations){
         // go through every attack, ask user how to respond
         Scanner input = new Scanner(System.in);
-        for(int i = 0; i < bossAttacks.size(); i ++){
-            System.out.println(bossAttacks.get(i));            // prints attack
+        Random random = new Random();
+        for(int i = 0; i < this.bossAttacks.size(); i ++){
+            int randomIndex = random.nextInt(this.bossAttacks.size());
+            System.out.println(this.bossAttacks.get(randomIndex));            // prints attack
             System.out.println("How do you want to respond?"); // let user pick response
             Enumeration<String> e = retaliations.elements();
             while(e.hasMoreElements()){
@@ -65,6 +68,7 @@ public class Boss {
                 System.out.println("Response does not exist");
                 break;
             }
+            this.bossAttacks.remove(randomIndex);
         }
         if (this.playerWin){
             System.out.println("Congrats! You win!");
