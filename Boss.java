@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.Random;
@@ -14,7 +13,7 @@ public class Boss {
     ArrayList<String> bossAttacks;
     boolean playerWin;
     String winRespo;
-    String looseRespo;
+    String loseRespo;
 
     // Constructor
     public Boss(){
@@ -48,24 +47,29 @@ public class Boss {
         }
     }
 
-    public void attack(Hashtable<String, String> retaliations){
+    public void attack(ArrayList<String> retaliations){
         // go through every attack, ask user how to respond
         Scanner input = new Scanner(System.in);
         Random random = new Random();
-        for(int i = 0; i < this.bossAttacks.size(); i ++){
+        int rounds = this.bossAttacks.size();
+        for(int i = 0; i < rounds; i ++){
             int randomIndex = random.nextInt(this.bossAttacks.size());
             System.out.println(this.bossAttacks.get(randomIndex));            // prints attack
             System.out.println("How do you want to respond?"); // let user pick response
-            Enumeration<String> e = retaliations.elements();
-            while(e.hasMoreElements()){
-                System.out.println(e.nextElement());
+            
+
+            for(int j = 0; j < retaliations.size(); j ++){ // Print and display attacks and their indexes
+                System.out.println(j+1 + ":"
+                               + "\t"
+                               + retaliations.get(j));
             }
-            String response = input.nextLine();
-            if(retaliations.containsKey(response)){             // if response exists
-                System.out.println(retaliations.get(response)); // give default retaliation for that response
-            }else{
-                System.out.println("Response does not exist");
+            int response = input.nextInt();
+            if(response > retaliations.size()){ // if response exists
+                System.out.println("Response does not exist. You stand there awkwardly.");
+                this.playerWin = false; // auto lose
                 break;
+            }else{
+                System.out.println(retaliations.get(response)); // give default retaliation for that response
             }
             this.bossAttacks.remove(randomIndex);
         }
@@ -76,14 +80,17 @@ public class Boss {
         if (this.playerWin){
             System.out.println(this.winRespo);
         } else{
-            System.out.println(this.looseRespo);
+            System.out.println(this.loseRespo);
         }
     }
 
     public static void main(String[] args) {
         Character legend = new Character();
-        Boss goblin = new Boss();
-        goblin.canWin(legend.getStats());
+        Boss dragon = new Dragon();
+       
+        dragon.canWin(legend.getStats());
+        dragon.attack(legend.charAttacks);
+        dragon.end();
     }
 
 }
