@@ -12,6 +12,7 @@ public class Character {
     int intelligence;
     int speed;
     ArrayList<String> keys;
+    ArrayList<String> charAttacks;
 
     /**
      * Constructor, sets default 0s for individual characteristics and 15 for default maxpoints
@@ -30,6 +31,14 @@ public class Character {
         keys.add("Recovery");
         keys.add("Intelligence");
         keys.add("Speed");
+        this.charAttacks = new ArrayList<>();
+        this.charAttacks.add("Swing your sword");
+        this.charAttacks.add("Cast a fire spell");
+        this.charAttacks.add("Cast an ice spell");
+        this.charAttacks.add("Cast a confusion spell");
+        this.charAttacks.add("Cast a blinding spell");  
+        this.charAttacks.add("Retreat a few paces");
+        this.charAttacks.add("Try to dodge");
     }
 
     /**
