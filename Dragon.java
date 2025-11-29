@@ -26,13 +26,13 @@ public class Dragon extends Boss{
     public void setLooseRespo(Hashtable<String,Integer> charStats){
         int recovery = charStats.get("Recovery");
         int speed = charStats.get("Speed");
-        this.looseRespo = "";
+        this.loseRespo = "";
         if(recovery < this.recoveryRequirement){
-            this.looseRespo = "You failed from recover from Dragon's attacks.";
+            this.loseRespo = "You failed from recover from Dragon's attacks.";
         }
         if(speed < this.speedRequirement){
-            this.looseRespo = this.looseRespo+" You failed were too slow. Dragon speed-biltzed you.";
+            this.loseRespo = this.loseRespo+" You failed were too slow. Dragon speed-biltzed you.";
         }
-        this.looseRespo = this.looseRespo+" You died.";
+        this.loseRespo = this.loseRespo+" You died.";
     }
 }
