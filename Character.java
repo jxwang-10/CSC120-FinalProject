@@ -6,11 +6,6 @@ public class Character {
 
     int maxPoints;
     Hashtable<String,Integer> pointDistribution;
-    int attack;
-    int defense;
-    int recovery;
-    int intelligence;
-    int speed;
     ArrayList<String> keys;
     ArrayList<String> charAttacks;
 
@@ -92,9 +87,9 @@ public class Character {
 
     /**
      * Interacts with user through terminal to set point distribution
+     * @param input Scanner object to get user input
      */
-    public void userSetStats(){
-        Scanner input = new Scanner(System.in);
+    public void userSetStats(Scanner input){
         while(true){
             System.out.println("What stat would you like to change?");
             String changingChar = input.nextLine();
@@ -140,7 +135,8 @@ public class Character {
         System.out.println("("+legend.getTotalPoints()+"-"+legend.pointDistribution.get("Attack")+"+"+15+")>"+legend.maxPoints);
         legend.viewStats();
 
-        legend.userSetStats();
+        Scanner input = new Scanner(System.in);
+        legend.userSetStats(input);
 
         // make stats an enum?
     }

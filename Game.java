@@ -1,39 +1,62 @@
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Game {
 
-    public Game(){
-        Character character = new Character();
-        Troll troll = new Troll(character.getStats());        
-        this.bossLoop(troll, character);
-        character.maxPoints = character.maxPoints + 2;
-        Werewolf werewolf = new Werewolf(character.getStats());
-        this.bossLoop(werewolf, character);
-        character.maxPoints = character.maxPoints + 3;
-        character.userSetStats();
-        Dragon dragon = new Dragon(character.getStats());
-        this.bossLoop(dragon, character);
-    }
+    /**
+     * Constructor
+     */
+    public Game(){}
 
-    public Character bossLoop(Boss boss, Character character){
-        Hashtable<String,Integer> ogStats = character.getStats();
+    /**
+     * Runs a loop were character sets their stats before attacking a boss
+     * @param boss the boss for teh character to fight
+     * @param character the character to fight the boss
+     * @param input Scanner object to get user input
+     */
+    public void bossLoop(Boss boss, Character character, Scanner input){
+        Hashtable<String,Integer> ogStats = new Hashtable<>();
+        for(int i = 0; i < character.keys.size(); i ++){
+            String key = character.keys.get(i);
+            ogStats.put(key,character.pointDistribution.get(key));
+        }
         while(true){
-            character.userSetStats();
+            character.userSetStats(input);
             // boss's intro
             boolean canWin = boss.canWin(character.getStats());
-            boss.attack(character.charAttacks);
+            boss.attack(character.charAttacks, input);
             boss.end(character.getStats());
             if(canWin == true){
+                input.nextLine();
                 break;
             }else if(canWin == false){
                 // print that user is redoing it
                 character.pointDistribution = ogStats;
+                input.nextLine();
                 continue;
             }
         }
-        return character;
+    }
+
+    /**
+     * Runs game loop
+     */
+    public void play(){
+        Scanner input = new Scanner(System.in);
+        Character character = new Character();
+        Troll troll = new Troll();        
+        this.bossLoop(troll, character, input);
+        character.maxPoints = character.maxPoints + 2;
+        Werewolf werewolf = new Werewolf();
+        this.bossLoop(werewolf, character, input);
+        character.maxPoints = character.maxPoints + 3;
+        character.userSetStats(input);
+        Dragon dragon = new Dragon();
+        this.bossLoop(dragon, character, input);
+        input.close();
     }
     public static void main(String[] args) {
         Game game = new Game();
+        game.play();
     }
 }

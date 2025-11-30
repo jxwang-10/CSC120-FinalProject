@@ -3,7 +3,10 @@ import java.util.Hashtable;
 
 public class Werewolf extends Boss{
     
-    public Werewolf(Hashtable<String,Integer> charStats){
+    /**
+     * Constructor, sets requirements, boss attacks, and win response specific to Werewolf
+     */
+    public Werewolf(){
         super();
         this.attackRequirement = 2;
         this.defenseRequirement = 3;
@@ -18,10 +21,12 @@ public class Werewolf extends Boss{
         this.bossAttacks.add("The Werewolf jumps at you!");
         // win responses
         this.winRespo = "You beat the Werewolf!";
-        // lose responses
-        this.setLoseRespo(charStats);
     }
 
+    /**
+     * Sets ending message specific to how character lost to Werewolf
+     * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
+     */
     public void setLoseRespo(Hashtable<String,Integer> charStats){
         int defense = charStats.get("Defense");
         int speed = charStats.get("Speed");

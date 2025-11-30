@@ -4,7 +4,10 @@ import java.util.Hashtable;
 
 public class Troll extends Boss{
 
-    public Troll(Hashtable<String,Integer> charStats){
+    /**
+     * Constructor, sets requirements, boss attacks, and win response specific to Troll
+     */
+    public Troll(){
         super();
         this.attackRequirement = 2;
         this.defenseRequirement = 2;
@@ -18,10 +21,12 @@ public class Troll extends Boss{
         this.bossAttacks.add("The Troll blows its nasty breath in your face!");
         // win responses
         this.winRespo = "You beat the Troll!";
-        // lose responses
-        this.setLoseRespo(charStats);
     }
 
+    /**
+     * Sets ending message specific to how character lost to Troll
+     * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
+     */
     public void setLoseRespo(Hashtable<String,Integer> charStats){
         int attack = charStats.get("Attack");
         int defense = charStats.get("Defense");
