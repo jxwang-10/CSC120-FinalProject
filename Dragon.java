@@ -3,7 +3,7 @@ import java.util.Hashtable;
 
 public class Dragon extends Boss{
 
-    public Dragon(){
+    public Dragon(Hashtable<String,Integer> charStats){
         super();
         this.attackRequirement = 2;
         this.defenseRequirement = 3;
@@ -20,6 +20,7 @@ public class Dragon extends Boss{
         // win responses
         this.winRespo = "You beat Dragon!";
         // loose responses
+        this.setLooseRespo(charStats);
 
     }
 
@@ -28,11 +29,22 @@ public class Dragon extends Boss{
         int speed = charStats.get("Speed");
         this.loseRespo = "";
         if(recovery < this.recoveryRequirement){
-            this.loseRespo = "You failed from recover from Dragon's attacks.";
+            this.loseRespo = "\nYou failed from recover from Dragon's attacks.";
         }
         if(speed < this.speedRequirement){
-            this.loseRespo = this.loseRespo+" You failed were too slow. Dragon speed-biltzed you.";
+            this.loseRespo = this.loseRespo+"\nYou were too slow. Dragon speed-biltzed you.";
         }
-        this.loseRespo = this.loseRespo+" You died.";
+        this.loseRespo = this.loseRespo+"\nYou died.";
+    }
+
+    public static void main(String[] args) {
+        Character sammy = new Character();
+        sammy.setStat("Attack", 2);
+        sammy.setStat("Defense", 3);
+        sammy.setStat("Recovery",3);
+        sammy.setStat("Intelligence", 2);
+        sammy.setStat("Speed", 3);
+        Dragon theRedDeath = new Dragon(sammy.getStats());        theRedDeath.attack(sammy.charAttacks);
+        theRedDeath.end(sammy.getStats());
     }
 }

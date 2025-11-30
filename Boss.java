@@ -76,7 +76,8 @@ public class Boss {
         input.close();
     }
 
-    public void end(){
+    public void end(Hashtable<String,Integer> charStats){
+        this.canWin(charStats);
         if (this.playerWin){
             System.out.println(this.winRespo);
         } else{
@@ -90,7 +91,7 @@ public class Boss {
        
         dragon.canWin(legend.getStats());
         dragon.attack(legend.charAttacks);
-        dragon.end();
+       // dragon.end();
     }
 
 }
