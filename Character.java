@@ -120,7 +120,6 @@ public class Character {
             String keepOn = input.nextLine();
             if(keepOn.equalsIgnoreCase("N")){
                 System.out.println("Okay, done changing stats");
-                input.close();
                 break;
             }else if(keepOn.equalsIgnoreCase("Y")){
                 continue;

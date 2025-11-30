@@ -20,11 +20,11 @@ public class Dragon extends Boss{
         // win responses
         this.winRespo = "You beat Dragon!";
         // loose responses
-        this.setLooseRespo(charStats);
+        this.setLoseRespo(charStats);
 
     }
 
-    public void setLooseRespo(Hashtable<String,Integer> charStats){
+    public void setLoseRespo(Hashtable<String,Integer> charStats){
         int recovery = charStats.get("Recovery");
         int speed = charStats.get("Speed");
         this.loseRespo = "";
@@ -44,7 +44,8 @@ public class Dragon extends Boss{
         sammy.setStat("Recovery",3);
         sammy.setStat("Intelligence", 2);
         sammy.setStat("Speed", 3);
-        Dragon theRedDeath = new Dragon(sammy.getStats());        theRedDeath.attack(sammy.charAttacks);
+        Dragon theRedDeath = new Dragon(sammy.getStats());        
+        theRedDeath.attack(sammy.charAttacks);
         theRedDeath.end(sammy.getStats());
     }
 }

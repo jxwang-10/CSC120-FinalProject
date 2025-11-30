@@ -26,7 +26,7 @@ public class Boss {
         this.playerWin = false;
     }
 
-    public void canWin(Hashtable<String,Integer> charStats){
+    public boolean canWin(Hashtable<String,Integer> charStats){
         int attack = charStats.get("Attack");
         int defense = charStats.get("Defense");
         int recovery = charStats.get("Recovery");
@@ -45,6 +45,7 @@ public class Boss {
             }
 
         }
+        return this.playerWin;
     }
 
     public void attack(ArrayList<String> retaliations){
@@ -63,8 +64,8 @@ public class Boss {
                                + "\t"
                                + retaliations.get(j));
             }
-            int response = input.nextInt();
-            if(response > retaliations.size()){ // if response exists
+            int response = input.nextInt()-1;
+            if(response <= retaliations.size()+1){ // if response exists
                 System.out.println("Response does not exist. You stand there awkwardly.");
                 this.playerWin = false; // auto lose
                 break;
@@ -87,9 +88,9 @@ public class Boss {
 
     public static void main(String[] args) {
         Character legend = new Character();
-        Boss dragon = new Dragon();
+        Boss dragon = new Dragon(legend.getStats());
        
-        dragon.canWin(legend.getStats());
+      //  dragon.canWin(legend.getStats());
         dragon.attack(legend.charAttacks);
        // dragon.end();
     }
