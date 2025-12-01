@@ -63,6 +63,8 @@ public class Boss {
      * @param input Scanner object to get user input
      */
     public void attack(ArrayList<String> retaliations, Scanner input){
+        System.out.println();
+        System.out.println("Starting fight.");
         // go through every attack, ask user how to respond
         Random random = new Random();
         int rounds = this.bossAttacks.size();
