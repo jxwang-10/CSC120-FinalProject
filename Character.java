@@ -48,7 +48,7 @@ public class Character {
      * Prints the point distribution
      */
     public void viewStats(){
-        System.out.println("Point Distribution:");
+        System.out.println("\nPoint Distribution:");
         for(int i = 0; i < keys.size(); i ++){
             System.out.println(keys.get(i)+": "+pointDistribution.get(keys.get(i)));
         }
@@ -91,7 +91,10 @@ public class Character {
      */
     public void userSetStats(Scanner input){
         while(true){
-            System.out.println("What stat would you like to change?");
+            this.viewStats();
+            int pointsLeft = maxPoints - getTotalPoints();
+            System.out.println("\nYou have "+pointsLeft+" out of "+maxPoints+" points left to use");
+            System.out.println("What stat would you like to change?\nType Attack, Defense, Recovery, Intelligence, or Speed.");
             String changingChar = input.nextLine();
             boolean charExists = false;
             for(int i = 0; i < keys.size(); i ++){
@@ -109,8 +112,6 @@ public class Character {
             int changingAmnt = input.nextInt(); // could more gracefullly catch exception here
             input.nextLine();
             this.setStat(changingChar, changingAmnt);
-            System.out.println("Updated Stats:");
-            this.viewStats();
             System.out.println("Would you like to set more stats? Type N for no and Y for yes");
             String keepOn = input.nextLine();
             if(keepOn.equalsIgnoreCase("N")){
