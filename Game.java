@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class Game {
 
+    // Attributes
+    String intro = "Welcome to the arena!\nYou have three bosses to beat ...\nThe Troll\nThe Werewolf\nAnd ... THE DRAGON\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...";
+
     /**
      * Constructor
      */
@@ -24,6 +27,7 @@ public class Game {
             character.userSetStats(input);
             // boss's intro
             boolean canWin = boss.canWin(character.getStats());
+            System.out.println(boss.intro);
             boss.attack(character.charAttacks, input);
             boss.end(character.getStats());
             if(canWin == true){
@@ -42,14 +46,17 @@ public class Game {
      * Runs game loop
      */
     public void play(){
+        System.out.println(this.intro);
         Scanner input = new Scanner(System.in);
         Character character = new Character();
         Troll troll = new Troll();        
         this.bossLoop(troll, character, input);
         character.maxPoints = character.maxPoints + 2;
+        System.out.println("Nice Job! You gained 2 points. Assign them now!");
         Werewolf werewolf = new Werewolf();
         this.bossLoop(werewolf, character, input);
         character.maxPoints = character.maxPoints + 3;
+        System.out.println("Nice Job! You gained 3 points. Assign them now!");
         character.userSetStats(input);
         Dragon dragon = new Dragon();
         this.bossLoop(dragon, character, input);

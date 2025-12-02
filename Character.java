@@ -13,7 +13,7 @@ public class Character {
      * Constructor, sets default 0s for individual characteristics and 15 for default maxpoints
      */
     public Character(){
-        this.maxPoints = 15;
+        this.maxPoints = 10;
         this.pointDistribution = new Hashtable<>();
         pointDistribution.put("Attack", 0);
         pointDistribution.put("Defense", 0);
@@ -126,7 +126,7 @@ public class Character {
             System.out.println("Would you like to set more stats? Type N for no and Y for yes");
             String keepOn = input.nextLine();
             if(keepOn.equalsIgnoreCase("N")){
-                System.out.println("Okay, done changing stats");
+                System.out.println("\nOkay, done changing stats");
                 break;
             }else if(keepOn.equalsIgnoreCase("Y")){
                 continue;

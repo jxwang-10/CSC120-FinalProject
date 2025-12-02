@@ -14,6 +14,7 @@ public class Boss {
     boolean playerWin;
     String winRespo;
     String loseRespo;
+    String intro;
 
     // Constructor
 
@@ -28,6 +29,7 @@ public class Boss {
         this.speedRequirement = 0;
         this.bossAttacks = new ArrayList<>();
         this.playerWin = false;
+        this.intro = "";
     }
 
     /**

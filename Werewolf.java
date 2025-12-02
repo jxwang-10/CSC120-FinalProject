@@ -21,6 +21,7 @@ public class Werewolf extends Boss{
         this.bossAttacks.add("The Werewolf jumps at you!");
         // win responses
         this.winRespo = "You beat the Werewolf!";
+        this.intro = "\nDo you hear that howling!\nMust be the Werewolf!\nGet Ready!";
     }
 
     /**
@@ -37,7 +38,7 @@ public class Werewolf extends Boss{
         if(speed < this.speedRequirement){
             this.loseRespo = this.loseRespo + "\nWerewolf bit you in the heart and you were to slow to avoid it.";
         }
-        this.loseRespo = this.loseRespo+"\nYou died.";
+        this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again.";
     }
 
 }

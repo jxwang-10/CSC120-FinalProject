@@ -22,6 +22,7 @@ public class Dragon extends Boss{
         this.bossAttacks.add("The Dragon tries to crush you with a claw!");
         // win responses
         this.winRespo = "You beat Dragon!";
+        this.intro = "\nThe arena dims ...\nYou look overhead...\nDragon has blocked the lights!\nQuick! Duck!";
     }
     
     /**
@@ -38,7 +39,7 @@ public class Dragon extends Boss{
         if(speed < this.speedRequirement){
             this.loseRespo = this.loseRespo+"\nYou were too slow. Dragon speed-biltzed you.";
         }
-        this.loseRespo = this.loseRespo+"\nYou died.";
+        this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again";
     }
 
     public static void main(String[] args) {

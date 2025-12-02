@@ -21,6 +21,7 @@ public class Troll extends Boss{
         this.bossAttacks.add("The Troll blows its nasty breath in your face!");
         // win responses
         this.winRespo = "You beat the Troll!";
+        this.intro = "\nEw! Whats the smell?\nHere comes the Troll!\nLook out!";
     }
 
     /**
@@ -49,7 +50,7 @@ public class Troll extends Boss{
         if(speed < this.speedRequirement){
             this.loseRespo = this.loseRespo + "\nTroll kicked you becuase you were too slow to evade it.";
         }
-        this.loseRespo = this.loseRespo+"\nYou died.";
+        this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again.";
     }
 
 }
