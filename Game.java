@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Game {
 
     // Attributes
-    String intro = "Welcome to the arena!\nYou have three bosses to beat ...\nThe Troll\nThe Werewolf\nAnd ... THE DRAGON\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...";
+    String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll\nThe Werewolf\nAnd ... THE DRAGON\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...";
 
     /**
      * Constructor
@@ -57,7 +57,6 @@ public class Game {
         this.bossLoop(werewolf, character, input);
         character.maxPoints = character.maxPoints + 3;
         System.out.println("Nice Job! You gained 3 points. Assign them now!");
-        character.userSetStats(input);
         Dragon dragon = new Dragon();
         this.bossLoop(dragon, character, input);
         input.close();
