@@ -63,8 +63,10 @@ public class Boss {
      * Loops through every attack the boss has and gets a player retaliation for each one
      * @param retaliations ArrayList<String> of possible retaliations from the character fighting the boss
      * @param input Scanner object to get user input
+     * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
-    public void attack(ArrayList<String> retaliations, Scanner input){
+    public void attack(ArrayList<String> retaliations, Scanner input, Hashtable<String,Integer> charStats){
+        this.canWin(charStats);
         System.out.println();
         System.out.println("Starting fight.");
         // go through every attack, ask user how to respond
@@ -103,7 +105,6 @@ public class Boss {
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
     public void end(Hashtable<String,Integer> charStats){
-        this.canWin(charStats);
         this.setLoseRespo(charStats);
         if (this.playerWin){
             System.out.println(this.winRespo);
@@ -118,14 +119,6 @@ public class Boss {
      */
     public void setLoseRespo(Hashtable<String,Integer> charStats){}
 
-    public static void main(String[] args) {
-        Character legend = new Character();
-        Boss dragon = new Dragon();
-       
-        Scanner input = new Scanner(System.in);
-      //  dragon.canWin(legend.getStats());
-        dragon.attack(legend.charAttacks, input);
-       // dragon.end();
-    }
+    public static void main(String[] args) {}
 
 }

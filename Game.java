@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Game {
 
     // Attributes
-    String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll\nThe Werewolf\nAnd ... THE DRAGON\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...";
+    String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll ... \nThe Werewolf ...\nAnd ... THE DRAGON!\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...\nType ^C to rage quit.";
+    String close = "GG!\nCongrats on surviving!";
 
     /**
      * Constructor
@@ -26,14 +27,13 @@ public class Game {
         while(true){
             character.userSetStats(input);
             // boss's intro
-            boolean canWin = boss.canWin(character.getStats());
             System.out.println(boss.intro);
-            boss.attack(character.charAttacks, input);
+            boss.attack(character.charAttacks, input, character.getStats());
             boss.end(character.getStats());
-            if(canWin == true){
+            if(boss.playerWin == true){
                 input.nextLine();
                 break;
-            }else if(canWin == false){
+            }else{
                 // print that user is redoing it
                 character.pointDistribution = ogStats;
                 input.nextLine();
@@ -59,6 +59,7 @@ public class Game {
         System.out.println("Nice Job! You gained 3 points. Assign them now!");
         Dragon dragon = new Dragon();
         this.bossLoop(dragon, character, input);
+        System.out.println(this.close);
         input.close();
     }
     public static void main(String[] args) {

@@ -110,6 +110,26 @@ public class Character {
         }
     }
 
+    /**
+     * Gets the amount of points the user wants to assign to the characterisitc
+     * @param input Scanner object to get user input
+     * @param changingChar String, characteristic to be changed
+     * @return int, the amount of points to assign to the characteristic
+     */
+    public int getChangingAmnt(Scanner input, String changingChar){
+        System.out.println("What would you like to change "+changingChar+" to?");
+        while(true){
+            try{
+                int changingAmnt = input.nextInt(); 
+                return changingAmnt;
+            } catch (RuntimeException e){
+                int changingAmnt = 0;
+                System.out.println("Type an integer.");
+                return changingAmnt;
+            }
+        }
+    }
+
 
     /**
      * Interacts with user through terminal to set point distribution
@@ -119,10 +139,9 @@ public class Character {
         while(true){
             this.viewStats();
             String changingChar = this.getChar(input);
-            System.out.println("What would you like to change "+changingChar+" to?");
-            int changingAmnt = input.nextInt(); // could more gracefullly catch exception here
-            input.nextLine();
+            int changingAmnt = this.getChangingAmnt(input, changingChar);
             this.setStat(changingChar, changingAmnt);
+            input.nextLine();
             System.out.println("Would you like to set more stats? Type N for no and Y for yes");
             String keepOn = input.nextLine();
             if(keepOn.equalsIgnoreCase("N")){
