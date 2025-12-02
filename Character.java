@@ -86,12 +86,12 @@ public class Character {
     // Setting all stats
 
     /**
-     * Interacts with user through terminal to set point distribution
+     * Gets the characteristic from the user that they want to update, to be used when they are chaning stats
      * @param input Scanner object to get user input
+     * @return String, the name of the characterisic the user wants to change
      */
-    public void userSetStats(Scanner input){
+    public String getChar(Scanner input){
         while(true){
-            this.viewStats();
             int pointsLeft = maxPoints - getTotalPoints();
             System.out.println("\nYou have "+pointsLeft+" out of "+maxPoints+" points left to use");
             System.out.println("What stat would you like to change?\nType Attack, Defense, Recovery, Intelligence, or Speed.");
@@ -101,13 +101,24 @@ public class Character {
                 String realChar = keys.get(i);
                 if(realChar.equals(changingChar)){
                     charExists = true;
-                    break;
+                    return changingChar;
                 }
             }
             if(charExists == false){
                 System.out.println("Characteristic does not exist.");
-                break;
             }
+        }
+    }
+
+
+    /**
+     * Interacts with user through terminal to set point distribution
+     * @param input Scanner object to get user input
+     */
+    public void userSetStats(Scanner input){
+        while(true){
+            this.viewStats();
+            String changingChar = this.getChar(input);
             System.out.println("What would you like to change "+changingChar+" to?");
             int changingAmnt = input.nextInt(); // could more gracefullly catch exception here
             input.nextLine();
