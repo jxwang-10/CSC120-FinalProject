@@ -94,7 +94,7 @@ public class Boss {
                 this.playerWin = false; // auto lose
                 break;
             }else if (response <= retaliations.size()-1){
-                System.out.println(retaliations.get(response)); // give default retaliation for that response
+                System.out.println("You " + retaliations.get(response).toLowerCase() + "."); // give default retaliation for that response
             }
             attacks.remove(randomIndex);
         }
