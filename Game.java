@@ -25,11 +25,12 @@ public class Game {
             ogStats.put(key,character.pointDistribution.get(key));
         }
         while(true){
+            character.pointDistribution = ogStats;
             character.userSetStats(input);
             // boss's intro
             System.out.println(boss.intro);
-            boss.attack(character.charAttacks, input, character.getStats());
-            boss.end(character.getStats());
+            boss.attack(character.charAttacks, input, character.getStats()); // battle start
+            boss.end(character.getStats()); // print ending hints
             if(boss.playerWin == true){
                 input.nextLine();
                 break;
@@ -48,17 +49,17 @@ public class Game {
     public void play(){
         System.out.println(this.intro);
         Scanner input = new Scanner(System.in);
-        Character character = new Character();
+        Character character = new Character(); //make new character
         Troll troll = new Troll();        
-        this.bossLoop(troll, character, input);
+        this.bossLoop(troll, character, input); // start troll level
         character.maxPoints = character.maxPoints + 2;
         System.out.println("Nice Job! You gained 2 points. Assign them now!");
         Werewolf werewolf = new Werewolf();
-        this.bossLoop(werewolf, character, input);
+        this.bossLoop(werewolf, character, input); // start wereworlf level
         character.maxPoints = character.maxPoints + 3;
         System.out.println("Nice Job! You gained 3 points. Assign them now!");
         Dragon dragon = new Dragon();
-        this.bossLoop(dragon, character, input);
+        this.bossLoop(dragon, character, input); // start dragon level
         System.out.println(this.close);
         input.close();
     }
