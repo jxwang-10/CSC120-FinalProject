@@ -122,7 +122,7 @@ public class Character {
             try{
                 int changingAmnt = input.nextInt(); 
                 return changingAmnt;
-            } catch (RuntimeException e){
+            }catch(RuntimeException e){
                 int changingAmnt = 0;
                 System.out.println("Type an integer.");
                 return changingAmnt;
@@ -142,7 +142,7 @@ public class Character {
             int changingAmnt = this.getChangingAmnt(input, changingChar);
             this.setStat(changingChar, changingAmnt);
             input.nextLine();
-            System.out.println("Would you like to set more stats? Type N for no and Y for yes");
+            System.out.println("Would you like to set more stats? If yes, type Y. If no, type your favorite battle cry.");
             String keepOn = input.nextLine();
             if(keepOn.equalsIgnoreCase("N")){
                 System.out.println("\nOkay, done changing stats");
