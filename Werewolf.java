@@ -22,6 +22,7 @@ public class Werewolf extends Boss{
         // win responses
         this.winRespo = "You beat the Werewolf!";
         this.intro = "\nDo you hear that howling!\nMust be the Werewolf!\nGet Ready!";
+        this.drop = 3;
     }
 
     /**

@@ -15,6 +15,7 @@ public class Boss {
     String winRespo;
     String loseRespo;
     String intro;
+    int drop;
 
     // Constructor
 

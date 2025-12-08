@@ -22,6 +22,7 @@ public class Troll extends Boss{
         // win responses
         this.winRespo = "You beat the Troll!";
         this.intro = "\nEw! Whats the smell?\nHere comes the Troll!\nLook out!";
+        this.drop = 2;
     }
 
     /**

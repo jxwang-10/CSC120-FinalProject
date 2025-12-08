@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -6,11 +7,14 @@ public class Game {
     // Attributes
     String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll ... \nThe Werewolf ...\nAnd ... THE DRAGON!\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...\nType ^C to rage quit.";
     String close = "GG!\nCongrats on surviving!";
+    ArrayList<Boss> bosses;
 
     /**
      * Constructor
      */
-    public Game(){}
+    public Game(){
+        this.bosses = new ArrayList<>();
+    }
 
     /**
      * Runs a loop were character sets their stats before attacking a boss
@@ -19,13 +23,7 @@ public class Game {
      * @param input Scanner object to get user input
      */
     public void bossLoop(Boss boss, Character character, Scanner input){
-        Hashtable<String,Integer> ogStats = new Hashtable<>();
-        for(int i = 0; i < character.keys.size(); i ++){
-            String key = character.keys.get(i);
-            ogStats.put(key,character.pointDistribution.get(key));
-        }
         while(true){
-            character.pointDistribution = ogStats;
             character.userSetStats(input);
             // boss's intro
             System.out.println(boss.intro);
@@ -36,11 +34,19 @@ public class Game {
                 break;
             }else{
                 // print that user is redoing it
-                character.pointDistribution = ogStats;
                 input.nextLine();
                 continue;
             }
         }
+    }
+
+    public void makeBosses(){
+        Troll troll = new Troll();   
+        Werewolf werewolf = new Werewolf();
+        Dragon dragon = new Dragon();
+        this.bosses.add(troll);
+        this.bosses.add(werewolf);
+        this.bosses.add(dragon);
     }
 
     /**
@@ -50,16 +56,13 @@ public class Game {
         System.out.println(this.intro);
         Scanner input = new Scanner(System.in);
         Character character = new Character(); //make new character
-        Troll troll = new Troll();        
-        this.bossLoop(troll, character, input); // start troll level
-        character.maxPoints = character.maxPoints + 2;
-        System.out.println("Nice Job! You gained 2 points. Assign them now!");
-        Werewolf werewolf = new Werewolf();
-        this.bossLoop(werewolf, character, input); // start wereworlf level
-        character.maxPoints = character.maxPoints + 3;
-        System.out.println("Nice Job! You gained 3 points. Assign them now!");
-        Dragon dragon = new Dragon();
-        this.bossLoop(dragon, character, input); // start dragon level
+        this.makeBosses();
+        for(int i = 0; i < this.bosses.size(); i ++){
+            Boss boss = this.bosses.get(i);
+            this.bossLoop(boss, character, input);
+            character.maxPoints = character.maxPoints + boss.drop;
+            System.out.println("Nice Job! You gained \boss.drop points. Assign them now!");
+        }
         System.out.println(this.close);
         input.close();
     }
