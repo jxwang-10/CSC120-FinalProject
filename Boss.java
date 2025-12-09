@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
@@ -81,7 +82,7 @@ public class Boss {
         for(int i = 0; i < rounds; i ++){
             int randomIndex = random.nextInt(attacks.size());
             System.out.println(attacks.get(randomIndex));            // prints attack
-            System.out.println("How do you want to respond?"); // let user pick response
+            System.out.println("How do you want to respond? (Enter Integer)"); // let user pick response
             
 
             for(int j = 0; j < retaliations.size(); j ++){ // Print and display attacks and their indexes
@@ -89,11 +90,18 @@ public class Boss {
                                + "\t"
                                + retaliations.get(j));
             }
-            int response = input.nextInt()-1;
+            int response;
+            try{
+                response = input.nextInt()-1;
+            }catch(RuntimeException e){  
+                response = retaliations.size() + 1;
+            }
+
             if(response > retaliations.size()-1){ // if response does not exist
                 System.out.println("Response does not exist. You stand there awkwardly.");
                 this.playerWin = false; // auto lose
                 break;
+            
             }else if (response <= retaliations.size()-1){
                 System.out.println("You " + retaliations.get(response).toLowerCase() + "."); // give default retaliation for that response
             }
