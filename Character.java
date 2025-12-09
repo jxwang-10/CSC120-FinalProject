@@ -47,18 +47,26 @@ public class Character {
     }
     
     /**
-     * 
-     * @return
+     * gets the list of Attacks 
+     * @return ArrayList<String> of each attack the character can do.
      */
     public ArrayList<String> getCharAttacks(){
         return this.charAttacks;
     }
 
+    /**
+     * gets the max points you can distribute
+     * @return int the total number of points you can use
+     */
     public int getMaxPoints(){
         return this.maxPoints;
     }
     
     // setters
+    /**
+     * Sets the max points
+     * @param maxPoints maximum character points
+     */
     public void setMaxPoints(int maxPoints){
         this.maxPoints = maxPoints;
     }
