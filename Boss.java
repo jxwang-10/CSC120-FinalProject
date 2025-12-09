@@ -92,7 +92,7 @@ public class Boss {
      * @param input Scanner object to get user input
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
-    protected void attack(ArrayList<String> retaliations, Scanner input, Hashtable<String,Integer> charStats){
+    public void attack(ArrayList<String> retaliations, Scanner input, Hashtable<String,Integer> charStats){
         this.canWin(charStats);
         System.out.println();
         System.out.println("Starting fight.");
@@ -138,7 +138,7 @@ public class Boss {
      * Gives the ending response to let the player know if they won or lost
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
-    protected void end(Hashtable<String,Integer> charStats){
+    public void end(Hashtable<String,Integer> charStats){
         this.setLoseRespo(charStats);
         if (this.playerWin){
             System.out.println(this.winRespo);

@@ -51,7 +51,7 @@ public class Character {
      * @return
      */
     public ArrayList<String> getCharAttacks(){
-        return this.getCharAttacks();
+        return this.charAttacks;
     }
 
     public int getMaxPoints(){
