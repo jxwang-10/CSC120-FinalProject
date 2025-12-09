@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Character {
 
-    int maxPoints;
-    Hashtable<String,Integer> pointDistribution;
-    ArrayList<String> keys;
-    ArrayList<String> charAttacks;
+    private int maxPoints;
+    private Hashtable<String,Integer> pointDistribution;
+    private ArrayList<String> keys;
+    private ArrayList<String> charAttacks;
 
     /**
      * Constructor, sets default 0s for individual characteristics and 15 for default maxpoints
@@ -36,6 +36,8 @@ public class Character {
         this.charAttacks.add("Try to dodge");
     }
 
+    //getters
+
     /**
      * Gets the point distribution
      * @return Hashtable<String,Integer> of the point distriubtion, where String/key is the characterisitc and the Integer/value is the amount that characteristic has
@@ -43,11 +45,28 @@ public class Character {
     public Hashtable<String,Integer> getStats(){
         return this.pointDistribution;
     }
+    
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<String> getCharAttacks(){
+        return this.getCharAttacks();
+    }
+
+    public int getMaxPoints(){
+        return this.maxPoints;
+    }
+    
+    // setters
+    public void setMaxPoints(int maxPoints){
+        this.maxPoints = maxPoints;
+    }
 
     /**
      * Prints the point distribution
      */
-    public void viewStats(){
+    private void viewStats(){
         System.out.println("\nPoint Distribution:");
         for(int i = 0; i < keys.size(); i ++){
             System.out.println(keys.get(i)+": "+pointDistribution.get(keys.get(i)));
@@ -58,7 +77,7 @@ public class Character {
      * Gets the total number of points across stats
      * @return int, the total number of points currently in the distriubtion
      */
-    public int getTotalPoints(){
+    private int getTotalPoints(){
         int total = 0;
         for(int i = 0; i < keys.size(); i ++){
             total = total + pointDistribution.get(keys.get(i));
@@ -73,7 +92,7 @@ public class Character {
      * @param characteristic the characteristic to update in the point distribution
      * @param newAmnt the new amount for the characteristic
      */
-    public void setStat(String characteristic, int newAmnt){
+    private void setStat(String characteristic, int newAmnt){
         int total = this.getTotalPoints();
         int currentAmnt = pointDistribution.get(characteristic);
         if((total - currentAmnt + newAmnt) <= this.maxPoints){
@@ -90,7 +109,7 @@ public class Character {
      * @param input Scanner object to get user input
      * @return String, the name of the characterisic the user wants to change
      */
-    public String getChar(Scanner input){
+    private String getChar(Scanner input){
         while(true){
             int pointsLeft = maxPoints - getTotalPoints();
             System.out.println("\nYou have "+pointsLeft+" out of "+maxPoints+" points left to use");
@@ -116,7 +135,7 @@ public class Character {
      * @param changingChar String, characteristic to be changed
      * @return int, the amount of points to assign to the characteristic
      */
-    public int getChangingAmnt(Scanner input, String changingChar){
+    private int getChangingAmnt(Scanner input, String changingChar){
         System.out.println("What would you like to change "+changingChar+" to?");
         while(true){
             try{
@@ -153,22 +172,5 @@ public class Character {
                 break;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Character legend = new Character();
-        legend.viewStats();
-        System.out.println(legend.getTotalPoints());
-        System.out.println(legend.maxPoints);
-      //  legend.maxPoints = 14;
-     //   legend.setAttack(15);
-        legend.setStat("Attack", 15);
-        System.out.println("("+legend.getTotalPoints()+"-"+legend.pointDistribution.get("Attack")+"+"+15+")>"+legend.maxPoints);
-        legend.viewStats();
-
-        Scanner input = new Scanner(System.in);
-        legend.userSetStats(input);
-
-        // make stats an enum?
     }
 }

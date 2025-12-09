@@ -41,16 +41,4 @@ public class Dragon extends Boss{
         }
         this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again";
     }
-
-    public static void main(String[] args) {
-        Character sammy = new Character();
-        sammy.setStat("Attack", 2);
-        sammy.setStat("Defense", 3);
-        sammy.setStat("Recovery",3);
-        sammy.setStat("Intelligence", 2);
-        sammy.setStat("Speed", 3);
-        Dragon theRedDeath = new Dragon();        
-      //  theRedDeath.attack();
-        theRedDeath.end(sammy.getStats());
-    }
 }

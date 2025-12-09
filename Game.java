@@ -4,14 +4,14 @@ import java.util.Scanner;
 public class Game {
 
     // Attributes
-    String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll ... \nThe Werewolf ...\nAnd ... THE DRAGON!\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...\nType ^C to rage quit.";
-    String close = "GG!\nCongrats on surviving!";
-    ArrayList<Boss> bosses; // bosses to beat in this game
+    private String intro = "\nWelcome to the arena!\nYou have three bosses to beat ...\nThe Troll ... \nThe Werewolf ...\nAnd ... THE DRAGON!\nYour character is composed of 5 attributes: Attack, Defense, Recovery, Intelligence, and Speed\nChoose your strengths and weaknesses wisely...\nType ^C to rage quit.";
+    private String close = "GG!\nCongrats on surviving!";
+    private ArrayList<Boss> bosses; // bosses to beat in this game
 
     /**
      * Constructor
      */
-    public Game(){
+    Game(){
         // create the list of bosses that will need to be beaten to win the game
         this.bosses = new ArrayList<>();
         Troll troll = new Troll();   
@@ -28,14 +28,14 @@ public class Game {
      * @param character the character to fight the boss
      * @param input Scanner object to get user input
      */
-    public void bossLoop(Boss boss, Character character, Scanner input){
+    private void bossLoop(Boss boss, Character character, Scanner input){
         while(true){
             character.userSetStats(input);
             // boss's intro
-            System.out.println(boss.intro);
-            boss.attack(character.charAttacks, input, character.getStats()); // battle start
+            System.out.println(boss.getIntro());
+            boss.attack(character.getCharAttacks(), input, character.getStats()); // battle start
             boss.end(character.getStats()); // print ending hints
-            if(boss.playerWin == true){
+            if(boss.getPlayerWin() == true){
                 input.nextLine();
                 break;
             }else{
@@ -49,14 +49,14 @@ public class Game {
     /**
      * Runs game loop
      */
-    public void play(Scanner input){
+    private void play(Scanner input){
         Character character = new Character(); //make new character
         for(int i = 0; i < this.bosses.size(); i ++){
             Boss boss = this.bosses.get(i);
             this.bossLoop(boss, character, input);
-            character.maxPoints = character.maxPoints + boss.drop;
-            if(boss.drop > 0){
-                System.out.println("\nNice Job! You gained "+boss.drop+" points Assign them now!");
+            character.setMaxPoints(character.getMaxPoints() + boss.getDrop());
+            if(boss.getDrop() > 0){
+                System.out.println("\nNice Job! You gained "+boss.getDrop()+" points Assign them now!");
             }
         }
         System.out.println(this.close);

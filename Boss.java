@@ -6,17 +6,17 @@ import java.util.Random;
 
 public class Boss {
     //Attributes
-    int attackRequirement;
-    int defenseRequirement;
-    int recoveryRequirement;
-    int intelligenceRequirement;
-    int speedRequirement;
-    ArrayList<String> bossAttacks;
-    boolean playerWin;
-    String winRespo;
-    String loseRespo;
-    String intro;
-    int drop;
+    protected int attackRequirement;
+    protected int defenseRequirement;
+    protected int recoveryRequirement;
+    protected int intelligenceRequirement;
+    protected int speedRequirement;
+    protected ArrayList<String> bossAttacks;
+    protected boolean playerWin;
+    protected String winRespo;
+    protected String loseRespo;
+    protected String intro;
+    protected int drop;
 
     // Constructor
 
@@ -34,12 +34,37 @@ public class Boss {
         this.intro = "";
     }
 
+    // getters
+    /**
+     * Gets the intro string for boss
+     * @return string, intro for boss
+     */
+    public String getIntro(){
+        return this.intro;
+    }
+    
+    /**
+     * Gets the apmount of points dropped when boss is beaten
+     * @return int, the amount of points dropped by boss
+     */
+    public int getDrop(){
+        return this.drop;
+    }
+
+    /**
+     * Gets player win status
+     * @return boolean, if player can win
+     */
+    public boolean getPlayerWin(){
+        return this.playerWin;
+    }
+
     /**
      * Compares character's stats and boss's requirements to determine if character can beat boss
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      * @return boolean, if the character is capable of beating the boss
      */
-    public boolean canWin(Hashtable<String,Integer> charStats){
+    private boolean canWin(Hashtable<String,Integer> charStats){
         int attack = charStats.get("Attack");
         int defense = charStats.get("Defense");
         int recovery = charStats.get("Recovery");
@@ -67,7 +92,7 @@ public class Boss {
      * @param input Scanner object to get user input
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
-    public void attack(ArrayList<String> retaliations, Scanner input, Hashtable<String,Integer> charStats){
+    protected void attack(ArrayList<String> retaliations, Scanner input, Hashtable<String,Integer> charStats){
         this.canWin(charStats);
         System.out.println();
         System.out.println("Starting fight.");
@@ -113,7 +138,7 @@ public class Boss {
      * Gives the ending response to let the player know if they won or lost
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
-    public void end(Hashtable<String,Integer> charStats){
+    protected void end(Hashtable<String,Integer> charStats){
         this.setLoseRespo(charStats);
         if (this.playerWin){
             System.out.println(this.winRespo);
@@ -127,7 +152,4 @@ public class Boss {
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
     public void setLoseRespo(Hashtable<String,Integer> charStats){}
-
-    public static void main(String[] args) {}
-
 }
