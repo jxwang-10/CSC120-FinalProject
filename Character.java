@@ -88,7 +88,7 @@ public class Character {
     private int getTotalPoints(){
         int total = 0;
         for(int i = 0; i < keys.size(); i ++){
-            total = total + pointDistribution.get(keys.get(i));
+            total = total + pointDistribution.get(keys.get(i)); // add all the points up
         }
         return total;
     }
@@ -103,7 +103,7 @@ public class Character {
     private void setStat(String characteristic, int newAmnt){
         int total = this.getTotalPoints();
         int currentAmnt = pointDistribution.get(characteristic);
-        if((total - currentAmnt + newAmnt) <= this.maxPoints){
+        if((total - currentAmnt + newAmnt) <= this.maxPoints){ // if there are points available
             this.pointDistribution.replace(characteristic, newAmnt);
         }else{
             System.out.println("You do not have enough points. Try assigning a different number of points to this characteristic.");
@@ -126,7 +126,7 @@ public class Character {
             boolean charExists = false;
             for(int i = 0; i < keys.size(); i ++){
                 String realChar = keys.get(i);
-                if(realChar.equals(changingChar)){
+                if(realChar.equals(changingChar)){ // checking for correct input
                     charExists = true;
                     return changingChar;
                 }
@@ -149,7 +149,7 @@ public class Character {
             try{
                 int changingAmnt = input.nextInt(); 
                 return changingAmnt;
-            }catch(RuntimeException e){
+            }catch(RuntimeException e){ // catching exception
                 int changingAmnt = 0;
                 System.out.println("Type an integer.");
                 return changingAmnt;
@@ -163,7 +163,7 @@ public class Character {
      * @param input Scanner object to get user input
      */
     public void userSetStats(Scanner input){
-        while(true){
+        while(true){ // stat loop
             this.viewStats();
             String changingChar = this.getChar(input);
             int changingAmnt = this.getChangingAmnt(input, changingChar);
