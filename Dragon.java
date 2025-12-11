@@ -30,15 +30,27 @@ public class Dragon extends Boss{
      * @param charStats Hashtable<String,Integer> of the character's stats, where the key is the characteristic and the value is the amount of point for that characterisitic
      */
     public void setLoseRespo(Hashtable<String,Integer> charStats){
+        int attack = charStats.get("Attack");
+        int defense = charStats.get("Defense");
         int recovery = charStats.get("Recovery");
+        int intelligence = charStats.get("Intelligence");
         int speed = charStats.get("Speed");
         this.loseRespo = "";
+        if(attack < this.attackRequirement){
+            this.loseRespo = this.loseRespo + "\nDragon dodged your attacks.";
+        }
+        if(defense < this.defenseRequirement){
+            this.loseRespo = this.loseRespo + "\nYour shield exploded under Dragon's hot breath.";
+        }
         if(recovery < this.recoveryRequirement){
             this.loseRespo = "\nYou failed from recover from Dragon's attacks.";
+        }
+        if(intelligence < this.intelligenceRequirement){
+            this.loseRespo = this.loseRespo + "\nYou couldn't think of a way to dodge Dragon's attacks.";
         }
         if(speed < this.speedRequirement){
             this.loseRespo = this.loseRespo+"\nYou were too slow. Dragon speed-biltzed you.";
         }
-        this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again";
+        this.loseRespo = this.loseRespo+"\nDragon defeated you. Redistribute your points and try again";
     }
 }

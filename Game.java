@@ -30,9 +30,9 @@ public class Game {
      */
     private void bossLoop(Boss boss, Character character, Scanner input){
         while(true){
-            character.userSetStats(input);
             // boss's intro
             System.out.println(boss.getIntro());
+            character.userSetStats(input);
             boss.attack(character.getCharAttacks(), input, character.getStats()); // battle start
             boss.end(character.getStats()); // print ending hints
             if(boss.getPlayerWin() == true){

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-
 public class Troll extends Boss{
 
     /**
@@ -51,7 +50,7 @@ public class Troll extends Boss{
         if(speed < this.speedRequirement){
             this.loseRespo = this.loseRespo + "\nTroll kicked you becuase you were too slow to evade it.";
         }
-        this.loseRespo = this.loseRespo+"\nYou died. Redistribute your points and try again.";
+        this.loseRespo = this.loseRespo+"\nTrol defeated you. Redistribute your points and try again.";
     }
 
 }

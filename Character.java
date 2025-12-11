@@ -126,7 +126,7 @@ public class Character {
             boolean charExists = false;
             for(int i = 0; i < keys.size(); i ++){
                 String realChar = keys.get(i);
-                if(realChar.equals(changingChar)){ // checking for correct input
+                if(realChar.equalsIgnoreCase(changingChar)){ // checking for correct input
                     charExists = true;
                     return changingChar;
                 }

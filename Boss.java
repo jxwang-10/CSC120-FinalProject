@@ -23,7 +23,7 @@ public class Boss {
     /**
      * Constructor sets requirments equal to 0, creates empty ArrayList<> for bossAttacks, and sets playerWin as false
      */
-    public Boss(){
+    protected Boss(){
         this.attackRequirement = 0;
         this.defenseRequirement = 0;
         this.recoveryRequirement = 0;
