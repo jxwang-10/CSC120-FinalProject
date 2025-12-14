@@ -18,12 +18,13 @@ Speed
 6:   Retreat a few paces  
 7:   Try to dodge  
 
-^C to quit
+^C to quit, or you will be prompted to quit or continue after beating all three bosses
 
 
 # SPOILER ALERT
 
 If your game includes challenges that must be overcome to win, also list them below.
+The correct distribution of points to beat each boss:
 
 #### Troll requirements:  
 Attack = 2  
