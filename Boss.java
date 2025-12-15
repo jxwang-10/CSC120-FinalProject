@@ -109,7 +109,6 @@ public class Boss {
             System.out.println(attacks.get(randomIndex));            // prints attack
             System.out.println("How do you want to respond? (Enter Integer)"); // let user pick response
             
-
             for(int j = 0; j < retaliations.size(); j ++){ // Print and display attacks and their indexes
                 System.out.println(j+1 + ":"
                                + "\t"
@@ -127,7 +126,7 @@ public class Boss {
                 this.playerWin = false; // auto lose
                 break;
             
-            }else if (response <= retaliations.size()-1){
+            }else if(response <= retaliations.size()-1){
                 System.out.println("You " + retaliations.get(response).toLowerCase() + "."); // give default retaliation for that response
             }
             attacks.remove(randomIndex);
@@ -140,7 +139,7 @@ public class Boss {
      */
     public void end(Hashtable<String,Integer> charStats){
         this.setLoseRespo(charStats);
-        if (this.playerWin){
+        if(this.playerWin){
             System.out.println(this.winRespo);
         }else{
             System.out.println(this.loseRespo);
